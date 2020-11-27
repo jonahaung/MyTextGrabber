@@ -3,10 +3,37 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		474B1E1E256F605400227BA7 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474B1E1D256F605400227BA7 /* UserDefaultManager.swift */; };
+		474B1E29256F60B000227BA7 /* MyanEmbedding.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 474B1E28256F60B000227BA7 /* MyanEmbedding.mlmodel */; };
+		474B1E3A256F619300227BA7 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 474B1E39256F619300227BA7 /* tessdata */; };
+		474B1E40256F670E00227BA7 /* EditImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474B1E3F256F670E00227BA7 /* EditImageViewController.swift */; };
+		474B1E53256F6A2B00227BA7 /* TextEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474B1E52256F6A2B00227BA7 /* TextEditorViewController.swift */; };
+		474B1E58256F6CC600227BA7 /* MyUITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474B1E57256F6CC600227BA7 /* MyUITextView.swift */; };
+		474B1E6D256F6D6D00227BA7 /* WordSegmentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474B1E6C256F6D6C00227BA7 /* WordSegmentationManager.swift */; };
+		474B1E74256F6D8300227BA7 /* WordPredictManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474B1E64256F6D1D00227BA7 /* WordPredictManager.swift */; };
+		474B1E79256F6D9600227BA7 /* Ext+UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474B1E78256F6D9600227BA7 /* Ext+UITextView.swift */; };
+		474B1E7E256F6DF800227BA7 /* words2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 474B1E7D256F6DF800227BA7 /* words2.txt */; };
+		474B1E83256F74BB00227BA7 /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474B1E82256F74BB00227BA7 /* SpinnerViewController.swift */; };
+		474B1E89256FAD7F00227BA7 /* UIImage+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474B1E87256FAD7E00227BA7 /* UIImage+Utils.swift */; };
+		474B1E8A256FAD7F00227BA7 /* UIImage+Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474B1E88256FAD7E00227BA7 /* UIImage+Orientation.swift */; };
+		478414B525707D52001C8DA9 /* ContentViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478414B425707D52001C8DA9 /* ContentViewManager.swift */; };
+		47D54CCC256FF674003C7765 /* EditScanCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D54CCB256FF674003C7765 /* EditScanCornerView.swift */; };
+		47D54CD1256FF679003C7765 /* Quadrilateral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D54CD0256FF679003C7765 /* Quadrilateral.swift */; };
+		47D54CD6256FF67E003C7765 /* QuadrilateralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D54CD5256FF67E003C7765 /* QuadrilateralView.swift */; };
+		47D54CDB256FF685003C7765 /* ZoomGestureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D54CDA256FF685003C7765 /* ZoomGestureController.swift */; };
+		47D54CE0256FF6AE003C7765 /* Transformable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D54CDF256FF6AE003C7765 /* Transformable.swift */; };
+		47D54CEC256FF6CD003C7765 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D54CE4256FF6CC003C7765 /* Array+Utils.swift */; };
+		47D54CED256FF6CD003C7765 /* CIImage+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D54CE5256FF6CC003C7765 /* CIImage+Utils.swift */; };
+		47D54CEE256FF6CD003C7765 /* CGRect+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D54CE6256FF6CC003C7765 /* CGRect+Utils.swift */; };
+		47D54CEF256FF6CD003C7765 /* CGAffineTransform+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D54CE7256FF6CC003C7765 /* CGAffineTransform+Utils.swift */; };
+		47D54CF0256FF6CD003C7765 /* CGImagePropertyOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D54CE8256FF6CD003C7765 /* CGImagePropertyOrientation.swift */; };
+		47D54CF1256FF6CD003C7765 /* CGPoint+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D54CE9256FF6CD003C7765 /* CGPoint+Utils.swift */; };
+		47D54CF2256FF6CD003C7765 /* AVCaptureVideoOrientation+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D54CEA256FF6CD003C7765 /* AVCaptureVideoOrientation+Utils.swift */; };
+		47D54CF3256FF6CD003C7765 /* CGSize+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D54CEB256FF6CD003C7765 /* CGSize+Utils.swift */; };
 		47E7DE30256F591800C9C584 /* MyTextGrabberApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7DE2F256F591800C9C584 /* MyTextGrabberApp.swift */; };
 		47E7DE32256F591800C9C584 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7DE31256F591800C9C584 /* ContentView.swift */; };
 		47E7DE34256F591B00C9C584 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47E7DE33256F591B00C9C584 /* Assets.xcassets */; };
@@ -15,6 +42,19 @@
 		47E7DE3C256F591B00C9C584 /* MyTextGrabber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 47E7DE3A256F591B00C9C584 /* MyTextGrabber.xcdatamodeld */; };
 		47E7DE47256F591B00C9C584 /* MyTextGrabberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7DE46256F591B00C9C584 /* MyTextGrabberTests.swift */; };
 		47E7DE52256F591B00C9C584 /* MyTextGrabberUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7DE51256F591B00C9C584 /* MyTextGrabberUITests.swift */; };
+		47E7DE64256F5AE000C9C584 /* ScannerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7DE63256F5AE000C9C584 /* ScannerNavigationController.swift */; };
+		47E7DE6C256F5AFC00C9C584 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7DE6B256F5AFC00C9C584 /* CameraViewController.swift */; };
+		47E7DE72256F5BEC00C9C584 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7DE71256F5BEC00C9C584 /* Extensions.swift */; };
+		47E7DE77256F5DD200C9C584 /* CameraUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7DE76256F5DD200C9C584 /* CameraUIView.swift */; };
+		47E7DE7D256F5DE800C9C584 /* TextRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7DE7C256F5DE800C9C584 /* TextRect.swift */; };
+		47E7DE8A256F5E0F00C9C584 /* MyanmarTextRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7DE85256F5E0F00C9C584 /* MyanmarTextRecognizer.swift */; };
+		47E7DE8B256F5E0F00C9C584 /* VisionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7DE86256F5E0F00C9C584 /* VisionService.swift */; };
+		47E7DE8C256F5E0F00C9C584 /* Cameramanager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7DE87256F5E0F00C9C584 /* Cameramanager.swift */; };
+		47E7DE8D256F5E0F00C9C584 /* VideoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7DE88256F5E0F00C9C584 /* VideoService.swift */; };
+		47E7DE8E256F5E0F00C9C584 /* CurrentSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E7DE89256F5E0F00C9C584 /* CurrentSession.swift */; };
+		ACF4F241CEA013F349D10C3A /* Pods_MyTextGrabber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7562BD81B8CA3E0104F934CC /* Pods_MyTextGrabber.framework */; };
+		BBD7FA6B249570A0FC1D50F7 /* Pods_MyTextGrabberTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 609DCE11B70B32B0A651CA7F /* Pods_MyTextGrabberTests.framework */; };
+		FF761B8771E7DF079981BC72 /* Pods_MyTextGrabber_MyTextGrabberUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8425E043C89819AD7BF5AC26 /* Pods_MyTextGrabber_MyTextGrabberUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +75,34 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A5A4726CEC9EE735D7CA473 /* Pods-MyTextGrabber.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTextGrabber.debug.xcconfig"; path = "Target Support Files/Pods-MyTextGrabber/Pods-MyTextGrabber.debug.xcconfig"; sourceTree = "<group>"; };
+		474B1E1D256F605400227BA7 /* UserDefaultManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
+		474B1E28256F60B000227BA7 /* MyanEmbedding.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MyanEmbedding.mlmodel; sourceTree = "<group>"; };
+		474B1E39256F619300227BA7 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
+		474B1E3F256F670E00227BA7 /* EditImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditImageViewController.swift; sourceTree = "<group>"; };
+		474B1E52256F6A2B00227BA7 /* TextEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorViewController.swift; sourceTree = "<group>"; };
+		474B1E57256F6CC600227BA7 /* MyUITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUITextView.swift; sourceTree = "<group>"; };
+		474B1E64256F6D1D00227BA7 /* WordPredictManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WordPredictManager.swift; path = "../../../Myanmar_Text_Grabber/Myanmar Text Grabber/Managers/WordPredictManager.swift"; sourceTree = "<group>"; };
+		474B1E6C256F6D6C00227BA7 /* WordSegmentationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WordSegmentationManager.swift; path = "../../../Myanmar_Text_Grabber/Myanmar Text Grabber/Managers/WordSegmentationManager.swift"; sourceTree = "<group>"; };
+		474B1E78256F6D9600227BA7 /* Ext+UITextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ext+UITextView.swift"; sourceTree = "<group>"; };
+		474B1E7D256F6DF800227BA7 /* words2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = words2.txt; sourceTree = "<group>"; };
+		474B1E82256F74BB00227BA7 /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
+		474B1E87256FAD7E00227BA7 /* UIImage+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Utils.swift"; sourceTree = "<group>"; };
+		474B1E88256FAD7E00227BA7 /* UIImage+Orientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Orientation.swift"; sourceTree = "<group>"; };
+		478414B425707D52001C8DA9 /* ContentViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewManager.swift; sourceTree = "<group>"; };
+		47D54CCB256FF674003C7765 /* EditScanCornerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditScanCornerView.swift; sourceTree = "<group>"; };
+		47D54CD0256FF679003C7765 /* Quadrilateral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quadrilateral.swift; sourceTree = "<group>"; };
+		47D54CD5256FF67E003C7765 /* QuadrilateralView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuadrilateralView.swift; sourceTree = "<group>"; };
+		47D54CDA256FF685003C7765 /* ZoomGestureController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomGestureController.swift; sourceTree = "<group>"; };
+		47D54CDF256FF6AE003C7765 /* Transformable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transformable.swift; sourceTree = "<group>"; };
+		47D54CE4256FF6CC003C7765 /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
+		47D54CE5256FF6CC003C7765 /* CIImage+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CIImage+Utils.swift"; sourceTree = "<group>"; };
+		47D54CE6256FF6CC003C7765 /* CGRect+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+Utils.swift"; sourceTree = "<group>"; };
+		47D54CE7256FF6CC003C7765 /* CGAffineTransform+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGAffineTransform+Utils.swift"; sourceTree = "<group>"; };
+		47D54CE8256FF6CD003C7765 /* CGImagePropertyOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGImagePropertyOrientation.swift; sourceTree = "<group>"; };
+		47D54CE9256FF6CD003C7765 /* CGPoint+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Utils.swift"; sourceTree = "<group>"; };
+		47D54CEA256FF6CD003C7765 /* AVCaptureVideoOrientation+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVCaptureVideoOrientation+Utils.swift"; sourceTree = "<group>"; };
+		47D54CEB256FF6CD003C7765 /* CGSize+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Utils.swift"; sourceTree = "<group>"; };
 		47E7DE2C256F591800C9C584 /* MyTextGrabber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyTextGrabber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47E7DE2F256F591800C9C584 /* MyTextGrabberApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTextGrabberApp.swift; sourceTree = "<group>"; };
 		47E7DE31256F591800C9C584 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,6 +117,24 @@
 		47E7DE4D256F591B00C9C584 /* MyTextGrabberUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyTextGrabberUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		47E7DE51256F591B00C9C584 /* MyTextGrabberUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTextGrabberUITests.swift; sourceTree = "<group>"; };
 		47E7DE53256F591B00C9C584 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		47E7DE63256F5AE000C9C584 /* ScannerNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerNavigationController.swift; sourceTree = "<group>"; };
+		47E7DE6B256F5AFC00C9C584 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		47E7DE71256F5BEC00C9C584 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		47E7DE76256F5DD200C9C584 /* CameraUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraUIView.swift; sourceTree = "<group>"; };
+		47E7DE7C256F5DE800C9C584 /* TextRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextRect.swift; sourceTree = "<group>"; };
+		47E7DE85256F5E0F00C9C584 /* MyanmarTextRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyanmarTextRecognizer.swift; sourceTree = "<group>"; };
+		47E7DE86256F5E0F00C9C584 /* VisionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisionService.swift; sourceTree = "<group>"; };
+		47E7DE87256F5E0F00C9C584 /* Cameramanager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cameramanager.swift; sourceTree = "<group>"; };
+		47E7DE88256F5E0F00C9C584 /* VideoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoService.swift; sourceTree = "<group>"; };
+		47E7DE89256F5E0F00C9C584 /* CurrentSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentSession.swift; sourceTree = "<group>"; };
+		58864B34A5CDB8F4547FE8CD /* Pods-MyTextGrabber.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTextGrabber.release.xcconfig"; path = "Target Support Files/Pods-MyTextGrabber/Pods-MyTextGrabber.release.xcconfig"; sourceTree = "<group>"; };
+		609DCE11B70B32B0A651CA7F /* Pods_MyTextGrabberTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTextGrabberTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D9AE0F717B4372F45218B51 /* Pods-MyTextGrabberTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTextGrabberTests.debug.xcconfig"; path = "Target Support Files/Pods-MyTextGrabberTests/Pods-MyTextGrabberTests.debug.xcconfig"; sourceTree = "<group>"; };
+		74733C044BC1677ECFFAAFA1 /* Pods-MyTextGrabberTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTextGrabberTests.release.xcconfig"; path = "Target Support Files/Pods-MyTextGrabberTests/Pods-MyTextGrabberTests.release.xcconfig"; sourceTree = "<group>"; };
+		7562BD81B8CA3E0104F934CC /* Pods_MyTextGrabber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTextGrabber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8425E043C89819AD7BF5AC26 /* Pods_MyTextGrabber_MyTextGrabberUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyTextGrabber_MyTextGrabberUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		85218590432F0A647F575A57 /* Pods-MyTextGrabber-MyTextGrabberUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTextGrabber-MyTextGrabberUITests.release.xcconfig"; path = "Target Support Files/Pods-MyTextGrabber-MyTextGrabberUITests/Pods-MyTextGrabber-MyTextGrabberUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B6642A16D25FBE96246C8949 /* Pods-MyTextGrabber-MyTextGrabberUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyTextGrabber-MyTextGrabberUITests.debug.xcconfig"; path = "Target Support Files/Pods-MyTextGrabber-MyTextGrabberUITests/Pods-MyTextGrabber-MyTextGrabberUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACF4F241CEA013F349D10C3A /* Pods_MyTextGrabber.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBD7FA6B249570A0FC1D50F7 /* Pods_MyTextGrabberTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +158,66 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF761B8771E7DF079981BC72 /* Pods_MyTextGrabber_MyTextGrabberUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		474B1E22256F607C00227BA7 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				474B1E6C256F6D6C00227BA7 /* WordSegmentationManager.swift */,
+				474B1E28256F60B000227BA7 /* MyanEmbedding.mlmodel */,
+				474B1E1D256F605400227BA7 /* UserDefaultManager.swift */,
+				474B1E64256F6D1D00227BA7 /* WordPredictManager.swift */,
+				474B1E82256F74BB00227BA7 /* SpinnerViewController.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		474B1E3E256F66F900227BA7 /* EditImage */ = {
+			isa = PBXGroup;
+			children = (
+				474B1E3F256F670E00227BA7 /* EditImageViewController.swift */,
+				47D54CCB256FF674003C7765 /* EditScanCornerView.swift */,
+				47D54CD5256FF67E003C7765 /* QuadrilateralView.swift */,
+				47D54CDA256FF685003C7765 /* ZoomGestureController.swift */,
+			);
+			path = EditImage;
+			sourceTree = "<group>";
+		};
+		474B1E47256F67CD00227BA7 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				47E7DE87256F5E0F00C9C584 /* Cameramanager.swift */,
+				47E7DE89256F5E0F00C9C584 /* CurrentSession.swift */,
+				47E7DE85256F5E0F00C9C584 /* MyanmarTextRecognizer.swift */,
+				47E7DE88256F5E0F00C9C584 /* VideoService.swift */,
+				47E7DE86256F5E0F00C9C584 /* VisionService.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		474B1E51256F6A1C00227BA7 /* TextView */ = {
+			isa = PBXGroup;
+			children = (
+				474B1E52256F6A2B00227BA7 /* TextEditorViewController.swift */,
+				474B1E57256F6CC600227BA7 /* MyUITextView.swift */,
+			);
+			path = TextView;
+			sourceTree = "<group>";
+		};
+		478414B325707D38001C8DA9 /* ContentView */ = {
+			isa = PBXGroup;
+			children = (
+				47E7DE31256F591800C9C584 /* ContentView.swift */,
+				478414B425707D52001C8DA9 /* ContentViewManager.swift */,
+			);
+			path = ContentView;
+			sourceTree = "<group>";
+		};
 		47E7DE23256F591800C9C584 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +225,8 @@
 				47E7DE45256F591B00C9C584 /* MyTextGrabberTests */,
 				47E7DE50256F591B00C9C584 /* MyTextGrabberUITests */,
 				47E7DE2D256F591800C9C584 /* Products */,
+				E3ECEB6EC78890F9C895A8F1 /* Pods */,
+				86586B8BAA919057C269BF85 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,10 +243,16 @@
 		47E7DE2E256F591800C9C584 /* MyTextGrabber */ = {
 			isa = PBXGroup;
 			children = (
+				47E7DE62256F5AA300C9C584 /* Scanner */,
+				474B1E22256F607C00227BA7 /* Managers */,
+				47E7DE7B256F5DE100C9C584 /* Models */,
 				47E7DE2F256F591800C9C584 /* MyTextGrabberApp.swift */,
-				47E7DE31256F591800C9C584 /* ContentView.swift */,
+				478414B325707D38001C8DA9 /* ContentView */,
+				47E7DE70256F5BDF00C9C584 /* Extensions */,
 				47E7DE33256F591B00C9C584 /* Assets.xcassets */,
+				474B1E39256F619300227BA7 /* tessdata */,
 				47E7DE38256F591B00C9C584 /* Persistence.swift */,
+				474B1E7D256F6DF800227BA7 /* words2.txt */,
 				47E7DE3D256F591B00C9C584 /* Info.plist */,
 				47E7DE3A256F591B00C9C584 /* MyTextGrabber.xcdatamodeld */,
 				47E7DE35256F591B00C9C584 /* Preview Content */,
@@ -136,6 +286,79 @@
 			path = MyTextGrabberUITests;
 			sourceTree = "<group>";
 		};
+		47E7DE62256F5AA300C9C584 /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				47E7DE63256F5AE000C9C584 /* ScannerNavigationController.swift */,
+				474B1E51256F6A1C00227BA7 /* TextView */,
+				474B1E3E256F66F900227BA7 /* EditImage */,
+				47E7DE81256F5DF500C9C584 /* Camera */,
+			);
+			path = Scanner;
+			sourceTree = "<group>";
+		};
+		47E7DE70256F5BDF00C9C584 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				47D54CE4256FF6CC003C7765 /* Array+Utils.swift */,
+				47D54CEA256FF6CD003C7765 /* AVCaptureVideoOrientation+Utils.swift */,
+				47D54CE7256FF6CC003C7765 /* CGAffineTransform+Utils.swift */,
+				47D54CE8256FF6CD003C7765 /* CGImagePropertyOrientation.swift */,
+				47D54CE9256FF6CD003C7765 /* CGPoint+Utils.swift */,
+				47D54CE6256FF6CC003C7765 /* CGRect+Utils.swift */,
+				47D54CEB256FF6CD003C7765 /* CGSize+Utils.swift */,
+				47D54CE5256FF6CC003C7765 /* CIImage+Utils.swift */,
+				474B1E88256FAD7E00227BA7 /* UIImage+Orientation.swift */,
+				474B1E87256FAD7E00227BA7 /* UIImage+Utils.swift */,
+				474B1E78256F6D9600227BA7 /* Ext+UITextView.swift */,
+				47E7DE71256F5BEC00C9C584 /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		47E7DE7B256F5DE100C9C584 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				47D54CDF256FF6AE003C7765 /* Transformable.swift */,
+				47D54CD0256FF679003C7765 /* Quadrilateral.swift */,
+				47E7DE7C256F5DE800C9C584 /* TextRect.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		47E7DE81256F5DF500C9C584 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				47E7DE6B256F5AFC00C9C584 /* CameraViewController.swift */,
+				47E7DE76256F5DD200C9C584 /* CameraUIView.swift */,
+				474B1E47256F67CD00227BA7 /* Managers */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		86586B8BAA919057C269BF85 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7562BD81B8CA3E0104F934CC /* Pods_MyTextGrabber.framework */,
+				8425E043C89819AD7BF5AC26 /* Pods_MyTextGrabber_MyTextGrabberUITests.framework */,
+				609DCE11B70B32B0A651CA7F /* Pods_MyTextGrabberTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E3ECEB6EC78890F9C895A8F1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2A5A4726CEC9EE735D7CA473 /* Pods-MyTextGrabber.debug.xcconfig */,
+				58864B34A5CDB8F4547FE8CD /* Pods-MyTextGrabber.release.xcconfig */,
+				B6642A16D25FBE96246C8949 /* Pods-MyTextGrabber-MyTextGrabberUITests.debug.xcconfig */,
+				85218590432F0A647F575A57 /* Pods-MyTextGrabber-MyTextGrabberUITests.release.xcconfig */,
+				6D9AE0F717B4372F45218B51 /* Pods-MyTextGrabberTests.debug.xcconfig */,
+				74733C044BC1677ECFFAAFA1 /* Pods-MyTextGrabberTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,9 +366,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 47E7DE56256F591B00C9C584 /* Build configuration list for PBXNativeTarget "MyTextGrabber" */;
 			buildPhases = (
+				4C445DBA3E24DDA1BA3B7BAE /* [CP] Check Pods Manifest.lock */,
+				C06915FF495363B4D5E26DFD /* [CP] Prepare Artifacts */,
 				47E7DE28256F591800C9C584 /* Sources */,
 				47E7DE29256F591800C9C584 /* Frameworks */,
 				47E7DE2A256F591800C9C584 /* Resources */,
+				63E77AD53B4F85C289A9A87E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -160,6 +386,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 47E7DE59256F591B00C9C584 /* Build configuration list for PBXNativeTarget "MyTextGrabberTests" */;
 			buildPhases = (
+				C6F019A87E8D2DA9EAC416A2 /* [CP] Check Pods Manifest.lock */,
 				47E7DE3E256F591B00C9C584 /* Sources */,
 				47E7DE3F256F591B00C9C584 /* Frameworks */,
 				47E7DE40256F591B00C9C584 /* Resources */,
@@ -178,9 +405,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 47E7DE5C256F591B00C9C584 /* Build configuration list for PBXNativeTarget "MyTextGrabberUITests" */;
 			buildPhases = (
+				C93D5652AEF6BF4B1FCF5084 /* [CP] Check Pods Manifest.lock */,
+				87B6347D391C24CDB52C40AD /* [CP] Prepare Artifacts */,
 				47E7DE49256F591B00C9C584 /* Sources */,
 				47E7DE4A256F591B00C9C584 /* Frameworks */,
 				47E7DE4B256F591B00C9C584 /* Resources */,
+				5824C56A14725D206D447B08 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -240,7 +470,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				47E7DE37256F591B00C9C584 /* Preview Assets.xcassets in Resources */,
+				474B1E7E256F6DF800227BA7 /* words2.txt in Resources */,
 				47E7DE34256F591B00C9C584 /* Assets.xcassets in Resources */,
+				474B1E3A256F619300227BA7 /* tessdata in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,15 +492,187 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4C445DBA3E24DDA1BA3B7BAE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyTextGrabber-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5824C56A14725D206D447B08 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyTextGrabber-MyTextGrabberUITests/Pods-MyTextGrabber-MyTextGrabberUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyTextGrabber-MyTextGrabberUITests/Pods-MyTextGrabber-MyTextGrabberUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyTextGrabber-MyTextGrabberUITests/Pods-MyTextGrabber-MyTextGrabberUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		63E77AD53B4F85C289A9A87E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyTextGrabber/Pods-MyTextGrabber-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyTextGrabber/Pods-MyTextGrabber-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyTextGrabber/Pods-MyTextGrabber-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		87B6347D391C24CDB52C40AD /* [CP] Prepare Artifacts */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyTextGrabber-MyTextGrabberUITests/Pods-MyTextGrabber-MyTextGrabberUITests-artifacts-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Prepare Artifacts";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyTextGrabber-MyTextGrabberUITests/Pods-MyTextGrabber-MyTextGrabberUITests-artifacts-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyTextGrabber-MyTextGrabberUITests/Pods-MyTextGrabber-MyTextGrabberUITests-artifacts.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C06915FF495363B4D5E26DFD /* [CP] Prepare Artifacts */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyTextGrabber/Pods-MyTextGrabber-artifacts-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Prepare Artifacts";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyTextGrabber/Pods-MyTextGrabber-artifacts-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyTextGrabber/Pods-MyTextGrabber-artifacts.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C6F019A87E8D2DA9EAC416A2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyTextGrabberTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C93D5652AEF6BF4B1FCF5084 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyTextGrabber-MyTextGrabberUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		47E7DE28256F591800C9C584 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47E7DE8D256F5E0F00C9C584 /* VideoService.swift in Sources */,
+				47E7DE8B256F5E0F00C9C584 /* VisionService.swift in Sources */,
+				474B1E40256F670E00227BA7 /* EditImageViewController.swift in Sources */,
 				47E7DE39256F591B00C9C584 /* Persistence.swift in Sources */,
+				47E7DE8C256F5E0F00C9C584 /* Cameramanager.swift in Sources */,
+				47E7DE64256F5AE000C9C584 /* ScannerNavigationController.swift in Sources */,
+				47D54CF0256FF6CD003C7765 /* CGImagePropertyOrientation.swift in Sources */,
+				47E7DE7D256F5DE800C9C584 /* TextRect.swift in Sources */,
+				474B1E74256F6D8300227BA7 /* WordPredictManager.swift in Sources */,
+				47D54CD6256FF67E003C7765 /* QuadrilateralView.swift in Sources */,
+				47D54CF2256FF6CD003C7765 /* AVCaptureVideoOrientation+Utils.swift in Sources */,
 				47E7DE32256F591800C9C584 /* ContentView.swift in Sources */,
+				47E7DE8A256F5E0F00C9C584 /* MyanmarTextRecognizer.swift in Sources */,
 				47E7DE3C256F591B00C9C584 /* MyTextGrabber.xcdatamodeld in Sources */,
+				474B1E89256FAD7F00227BA7 /* UIImage+Utils.swift in Sources */,
+				47D54CF1256FF6CD003C7765 /* CGPoint+Utils.swift in Sources */,
+				474B1E8A256FAD7F00227BA7 /* UIImage+Orientation.swift in Sources */,
+				474B1E1E256F605400227BA7 /* UserDefaultManager.swift in Sources */,
+				478414B525707D52001C8DA9 /* ContentViewManager.swift in Sources */,
 				47E7DE30256F591800C9C584 /* MyTextGrabberApp.swift in Sources */,
+				47E7DE8E256F5E0F00C9C584 /* CurrentSession.swift in Sources */,
+				47D54CEE256FF6CD003C7765 /* CGRect+Utils.swift in Sources */,
+				47D54CD1256FF679003C7765 /* Quadrilateral.swift in Sources */,
+				474B1E58256F6CC600227BA7 /* MyUITextView.swift in Sources */,
+				47D54CDB256FF685003C7765 /* ZoomGestureController.swift in Sources */,
+				47D54CF3256FF6CD003C7765 /* CGSize+Utils.swift in Sources */,
+				47E7DE6C256F5AFC00C9C584 /* CameraViewController.swift in Sources */,
+				474B1E83256F74BB00227BA7 /* SpinnerViewController.swift in Sources */,
+				474B1E29256F60B000227BA7 /* MyanEmbedding.mlmodel in Sources */,
+				474B1E79256F6D9600227BA7 /* Ext+UITextView.swift in Sources */,
+				474B1E53256F6A2B00227BA7 /* TextEditorViewController.swift in Sources */,
+				47D54CED256FF6CD003C7765 /* CIImage+Utils.swift in Sources */,
+				47E7DE72256F5BEC00C9C584 /* Extensions.swift in Sources */,
+				474B1E6D256F6D6D00227BA7 /* WordSegmentationManager.swift in Sources */,
+				47D54CEF256FF6CD003C7765 /* CGAffineTransform+Utils.swift in Sources */,
+				47D54CEC256FF6CD003C7765 /* Array+Utils.swift in Sources */,
+				47D54CCC256FF674003C7765 /* EditScanCornerView.swift in Sources */,
+				47D54CE0256FF6AE003C7765 /* Transformable.swift in Sources */,
+				47E7DE77256F5DD200C9C584 /* CameraUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,7 +759,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -410,7 +814,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -422,6 +826,7 @@
 		};
 		47E7DE57256F591B00C9C584 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A5A4726CEC9EE735D7CA473 /* Pods-MyTextGrabber.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -444,6 +849,7 @@
 		};
 		47E7DE58256F591B00C9C584 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58864B34A5CDB8F4547FE8CD /* Pods-MyTextGrabber.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -466,6 +872,7 @@
 		};
 		47E7DE5A256F591B00C9C584 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6D9AE0F717B4372F45218B51 /* Pods-MyTextGrabberTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -488,6 +895,7 @@
 		};
 		47E7DE5B256F591B00C9C584 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74733C044BC1677ECFFAAFA1 /* Pods-MyTextGrabberTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -510,6 +918,7 @@
 		};
 		47E7DE5D256F591B00C9C584 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6642A16D25FBE96246C8949 /* Pods-MyTextGrabber-MyTextGrabberUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -530,6 +939,7 @@
 		};
 		47E7DE5E256F591B00C9C584 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 85218590432F0A647F575A57 /* Pods-MyTextGrabber-MyTextGrabberUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
