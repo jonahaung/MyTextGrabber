@@ -6,11 +6,15 @@
 //
 
 import UIKit
-
+protocol CustomCameraViewControllerDelegate: class {
+    func customCameraViewController(_ contoller: CameraViewController, didCaptureImage image: UIImage)
+}
 class CameraViewController: UIViewController {
     
+    override var prefersStatusBarHidden: Bool { return true }
     let cameraManager = Cameramanager()
     let cameraView = CameraUIView()
+    weak var delegate: CustomCameraViewControllerDelegate?
     
     override func loadView() {
         view = cameraView
@@ -18,7 +22,7 @@ class CameraViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setup()
         
         cameraManager.cameraView = cameraView
@@ -35,39 +39,22 @@ class CameraViewController: UIViewController {
         super.viewWillDisappear(animated)
         cameraManager.viewWillDisappear()
     }
-
 }
+
 extension CameraViewController: CameraManagerDelegate {
     
     func cameraManage(_ manager: Cameramanager, didCaptureImage image: UIImage) {
-        guard let ciImage = CIImage(image: image) else { return }
-        let cgOrientation = CGImagePropertyOrientation(image.imageOrientation)
-        let orientedImage = ciImage.oriented(forExifOrientation: Int32(cgOrientation.rawValue))
-        let rect = cameraManager.currentTextRects.map{ $0.rect }.reduce(CGRect.null, {$0.union($1)}).applying(CurrentSession.cameraTransform)
-        let quad = Quadrilateral(rect: rect)
-        let scaledQuad = quad.scale(view.bounds.size, image.size)
-//        
-//        // Cropped Image
-//        var cartesianScaledQuad = scaledQuad.toCartesian(withHeight: image.size.height)
-//        cartesianScaledQuad.reorganize()
-//        
-//        let filteredImage = orientedImage.applyingFilter("CIPerspectiveCorrection", parameters: [
-//            "inputTopLeft": CIVector(cgPoint: cartesianScaledQuad.bottomLeft),
-//            "inputTopRight": CIVector(cgPoint: cartesianScaledQuad.bottomRight),
-//            "inputBottomLeft": CIVector(cgPoint: cartesianScaledQuad.topLeft),
-//            "inputBottomRight": CIVector(cgPoint: cartesianScaledQuad.topRight)
-//            ])
-//        
-//        let croppedImage = UIImage.from(ciImage: filteredImage)
-        
-        let x = EditImageViewController(image, scaledQuad)
+        delegate?.customCameraViewController(self, didCaptureImage: image)
+        let result = ImageScannerResult()
+        result.originalImage = image
+        result.editedImage = image
+        let x = EditImageViewController(_result: result)
         navigationController?.pushViewController(x, animated: true)
+        
     }
 }
 
-
 extension CameraViewController {
-    
     fileprivate func setupToolbar() {
         let language = UIBarButtonItem(title: userDefaults.isMyanmar ? "Myanamr" : "English", style: .plain, target: self, action: #selector(didtapLanguageButton(_:)))
         let tool1 = UIBarButtonItem(image: UIImage(systemName: "textformat.alt"), style: .plain, target: self, action: nil)
@@ -76,14 +63,11 @@ extension CameraViewController {
     }
     
     fileprivate func setupNavBar() {
-    
-        
         let dismiss = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(didtapDismissButton(_:)))
         navigationItem.rightBarButtonItems = [dismiss]
     }
     
     private func setup() {
-        view.backgroundColor = .systemBackground
         setupNavBar()
         
         setupToolbar()
@@ -114,7 +98,6 @@ extension CameraViewController {
         navigationController?.dismiss(animated: true, completion: nil)
     }
     @objc private func didTapCaptureButton(_ sender: UIButton) {
-
         cameraManager.capture()
     }
 }

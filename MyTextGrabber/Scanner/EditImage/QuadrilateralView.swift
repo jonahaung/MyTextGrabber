@@ -17,21 +17,22 @@ enum CornerPosition {
     case bottomLeft
 }
 
-/// The `QuadrilateralView` is a simple `UIView` subclass that can draw a quadrilateral, and optionally edit it.
+protocol QuadrilateralViewDelegate: class {
+    func quadrilateralView(_ view: QuadrilateralView, quadrilateralDidUpdate quad: Quadrilateral?)
+}
+
 final class QuadrilateralView: UIView {
-    
+    weak var delegate: QuadrilateralViewDelegate?
     private let quadLayer: CAShapeLayer = {
-        let layer = CAShapeLayer()
-        layer.strokeColor = UIColor.systemBlue.cgColor
-        layer.lineWidth = 1.5
-        layer.opacity = 1.0
-        layer.isHidden = true
-        
-        return layer
-    }()
+        $0.strokeColor = UIColor.systemOrange.cgColor
+        $0.fillColor = UIColor.clear.cgColor
+        $0.lineWidth = 2
+//        $0.opacity = 1.0
+        $0.isHidden = true
+        $0.fillRule = .evenOdd
+        return $0
+    }(CAShapeLayer())
     
-    /// We want the corner views to be displayed under the outline of the quadrilateral.
-    /// Because of that, we need the quadrilateral to be drawn on a UIView above them.
     private let quadView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.clear
@@ -41,11 +42,10 @@ final class QuadrilateralView: UIView {
     
     /// The quadrilateral drawn on the view.
     private(set) var quad: Quadrilateral?
-    
     public var editable = false {
         didSet {
             cornerViews(hidden: !editable)
-            quadLayer.fillColor = editable ? UIColor(white: 0.0, alpha: 0.6).cgColor : UIColor(white: 1.0, alpha: 0.5).cgColor
+            quadLayer.fillColor = editable ? UIColor(white: 0, alpha: 0.4).cgColor : UIColor(white: 1.0, alpha: 0.5).cgColor
             guard let quad = quad else {
                 return
             }
@@ -59,7 +59,7 @@ final class QuadrilateralView: UIView {
             guard oldValue != isHighlighted else {
                 return
             }
-            quadLayer.fillColor = isHighlighted ? UIColor.clear.cgColor : UIColor(white: 0.0, alpha: 0.6).cgColor
+            quadLayer.fillColor = isHighlighted ? UIColor(white: 0, alpha: 0.4).cgColor : UIColor.clear.cgColor
             isHighlighted ? bringSubviewToFront(quadView) : sendSubviewToBack(quadView)
         }
     }
@@ -131,14 +131,14 @@ final class QuadrilateralView: UIView {
         }
     }
     
-    // MARK: - Drawings
-    
-    /// Draws the passed in quadrilateral.
-    ///
-    /// - Parameters:
-    ///   - quad: The quadrilateral to draw on the view. It should be in the coordinates of the current `QuadrilateralView` instance.
-    func drawQuadrilateral(quad: Quadrilateral, animated: Bool) {
+    func drawQuadrilateral(quad: Quadrilateral?, animated: Bool) {
         self.quad = quad
+        guard let quad = quad else {
+            quadLayer.path = nil
+            
+            return
+        }
+        
         drawQuad(quad, animated: animated)
         if editable {
             cornerViews(hidden: false)
@@ -148,19 +148,18 @@ final class QuadrilateralView: UIView {
     
     private func drawQuad(_ quad: Quadrilateral, animated: Bool) {
         var path = quad.path
-        
+        path.usesEvenOddFillRule = true
         if editable {
             path = path.reversing()
             let rectPath = UIBezierPath(rect: bounds)
+            rectPath.usesEvenOddFillRule = true
             path.append(rectPath)
         }
-        
         if animated == true {
             let pathAnimation = CABasicAnimation(keyPath: "path")
             pathAnimation.duration = 0.2
             quadLayer.add(pathAnimation, forKey: "path")
         }
-        
         quadLayer.path = path.cgPath
         quadLayer.isHidden = false
     }
@@ -191,6 +190,7 @@ final class QuadrilateralView: UIView {
         
         self.quad = updatedQuad
         drawQuad(updatedQuad, animated: false)
+        delegate?.quadrilateralView(self, quadrilateralDidUpdate: updatedQuad)
     }
     
     func highlightCornerAtPosition(position: CornerPosition, with image: UIImage) {

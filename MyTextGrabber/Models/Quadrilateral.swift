@@ -38,7 +38,9 @@ public struct Quadrilateral: Transformable {
         topRight = CGPoint(x: rect.maxX, y: rect.minY)
         bottomLeft = CGPoint(x: rect.minX, y: rect.maxY)
         bottomRight = CGPoint(x: rect.maxX, y: rect.maxY)
+        boundingBox = rect
     }
+    var boundingBox: CGRect = .zero
 
     @available(iOS 11.0, *)
     init(rectangleObservation: VNRectangleObservation) {

@@ -60,7 +60,7 @@ extension VideoService {
         }
         
         captureSession.beginConfiguration()
-        captureSession.sessionPreset = .iFrame960x540
+        captureSession.sessionPreset = .high
         photoOutput.isHighResolutionCaptureEnabled = true
         
         captureSession.addInput(captureDeviceInput)
@@ -68,9 +68,21 @@ extension VideoService {
         captureSession.addOutput(photoOutput)
         captureSession.commitConfiguration()
         
+    
+        
         try? device.lockForConfiguration()
+        
+        defer {
+            device.unlockForConfiguration()
+        }
         device.isSubjectAreaChangeMonitoringEnabled = true
-        device.unlockForConfiguration()
+        if device.isFocusPointOfInterestSupported && device.isFocusModeSupported(.continuousAutoFocus) {
+            device.focusMode = .continuousAutoFocus
+        }
+        
+        if device.isExposurePointOfInterestSupported, device.isExposureModeSupported(.continuousAutoExposure) {
+            device.exposureMode = .continuousAutoExposure
+        }
     }
     
     

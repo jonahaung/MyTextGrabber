@@ -11,18 +11,19 @@ import AVFoundation
 
 final class CameraUIView: UIView {
     
+    private var currentTextRects = [TextRect]()
     override class var layerClass: AnyClass { return AVCaptureVideoPreviewLayer.self }
     var cameraLayer: AVCaptureVideoPreviewLayer { return layer as! AVCaptureVideoPreviewLayer }
 
     private let shapeLayer: CAShapeLayer = {
         $0.fillColor = nil
-        $0.strokeColor = UIColor.orange.cgColor
+        $0.strokeColor = UIColor.systemYellow.cgColor
         $0.lineWidth = 2
         return $0
     }(CAShapeLayer())
     
     private let animation: CABasicAnimation = {
-        $0.duration = 0.3
+        $0.duration = 0.25
         return $0
     }(CABasicAnimation())
     
@@ -56,15 +57,24 @@ extension CameraUIView {
         if shapeLayer.path == nil {
             updateTransform()
         }
-        let rect = textRects.map{ $0.rect }.reduce(CGRect.null, {$0.union($1)}).applying(CurrentSession.cameraTransform).integral
-        let path = CGPath(rect: rect, transform: nil)
-        shapeLayer.path = path
         
-        shapeLayer.add(animation, forKey: "path")
+        currentTextRects.forEach{$0.remove()}
+        
+        textRects.forEach{
+            $0.addShapeLayer(to: shapeLayer)
+        }
+        let normalizedRect = textRects.map{$0.boundingBox}.reduce(CGRect.null, {$0.union($1)}).applying(CurrentSession.cameraTransform)
+        shapeLayer.path = CGMutablePath(rect: normalizedRect, transform: nil)
+        
+//        textRects.forEach {
+//            $0.addTextLayer(to: shapeLayer)
+//            $0.display()
+//        }
+        
+        self.currentTextRects = textRects
     }
     
     private func setup() {
-
         layer.addSublayer(shapeLayer)
     }
 }

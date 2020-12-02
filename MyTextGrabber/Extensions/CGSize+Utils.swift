@@ -23,4 +23,16 @@ extension CGSize {
         // Use the smaller scale factor to ensure both the width and height are below the max
         return min(widthScaleFactor, heightScaleFactor)
     }
+    
+    func scaleSize(for maxDimension: CGFloat) -> CGSize {
+        // 3
+        var scaledSize = CGSize(width: maxDimension, height: maxDimension)
+        // 4
+        if self.width > self.height {
+            scaledSize.height = self.height / self.width * scaledSize.width
+        } else {
+            scaledSize.width = self.width / self.height * scaledSize.height
+        }
+        return scaledSize
+    }
 }

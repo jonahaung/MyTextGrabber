@@ -10,43 +10,34 @@ import AVKit
 import Vision
 
 protocol VisionServiceDelegate: class {
-    func service(_ service: VisionService, didOutput textRects: [TextRect], buffer: CVImageBuffer)
+    func service(_ service: VisionService, didOutput textRects: [TextRect])
 }
+
 class VisionService: NSObject {
+    
     weak var delegate: VisionServiceDelegate?
     private var lastTimestamp = CMTime()
     private var fps = 10
+    private var textRequest: VNRecognizeTextRequest!
+    
+    override init() {
+        super.init()
+        textRequest = VNRecognizeTextRequest(completionHandler: textCompletionHandler(request:error:))
+        textRequest.recognitionLevel = .accurate
+        textRequest.usesLanguageCorrection = true
+    }
+    
 }
 
 
 extension VisionService {
-    
-    func detect(_ buffer: CVPixelBuffer) {
-        let request = VNRecognizeTextRequest { [weak self, weak buffer] (x, _) in
-            guard let buffer = buffer, let self = self else { return }
-            guard let results = x.results as? [VNRecognizedTextObservation] else { return }
-            var textRects = [TextRect]()
-            
-            results.forEach {
-                if let first = $0.topCandidates(1).first {
-                    let string = first.string
-                    let stringRange = string.startIndex..<string.endIndex
-                    let boxObservation = try? first.boundingBox(for: stringRange)
-                    let x = TextRect(text: first.string, rect: boxObservation?.boundingBox ?? .zero)
-                    textRects.append(x)
-                }
-            }
-            self.delegate?.service(self, didOutput: textRects, buffer: buffer)
-            
-        }
-        request.recognitionLevel = .accurate
-        request.usesLanguageCorrection = true
-        
-        let handler = VNImageRequestHandler(cvPixelBuffer: buffer, orientation: .up)
-        
-        try? handler.perform([request])
+    private func textCompletionHandler(request: VNRequest?, error:Error?) {
+        guard let results = request?.results as? [VNRecognizedTextObservation] else { return }
+        let textRects = results.map{TextRect(observation: $0)}.compactMap{$0}
+        self.delegate?.service(self, didOutput: textRects)
     }
 }
+
 extension VisionService: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
@@ -60,23 +51,15 @@ extension VisionService: AVCaptureVideoDataOutputSampleBufferDelegate {
         let canPerformRequest = deltaTime >= CMTimeMake(value: 1, timescale: Int32(fps))
         
         if canPerformRequest {
-            lastTimestamp = timestamp
-            detect(buffer)
+            self.lastTimestamp = timestamp
+            detectText(buffer)
         }
     }
-    func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        guard let buffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+    
+    func detectText(_ pixelBuffer: CVImageBuffer) {
+        let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .up)
 
-        if CurrentSession.videoSize == .zero {
-            CurrentSession.videoSize = CGSize(width: CVPixelBufferGetWidth(buffer), height: CVPixelBufferGetHeight(buffer))
-        }
-        let timestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
-        let deltaTime = timestamp - lastTimestamp
-        let canPerformRequest = deltaTime >= CMTimeMake(value: 1, timescale: Int32(fps))
-        
-        if canPerformRequest {
-            lastTimestamp = timestamp
-            detect(buffer)
-        }
+        try? handler.perform([textRequest])
     }
+    
 }

@@ -11,11 +11,14 @@ import AVFoundation
 
 final class ZoomGestureController {
     
-    private let image: UIImage
+    private var image: UIImage {
+        return imageView.image ?? UIImage()
+    }
+    private let imageView: UIImageView
     private let quadView: QuadrilateralView
     
-    init(image: UIImage, quadView: QuadrilateralView) {
-        self.image = image
+    init(imageView: UIImageView, quadView: QuadrilateralView) {
+        self.imageView = imageView
         self.quadView = quadView
     }
     

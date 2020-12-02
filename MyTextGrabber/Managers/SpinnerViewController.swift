@@ -10,13 +10,13 @@ import UIKit
 final class SpinnerViewController: UIViewController {
     
     private let spinner: UIActivityIndicatorView = {
-        $0.color = .systemBackground
+        $0.color = UIColor.systemYellow
         return $0
-    }(UIActivityIndicatorView(style: .large))
+    }(UIActivityIndicatorView(style: .medium))
 
     override func loadView() {
         view = UIView()
-        view.backgroundColor = UIColor(white: 0, alpha: 0.5)
+//        view.backgroundColor = UIColor(white: 0.5, alpha: 0.5)
 
         spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.startAnimating()
@@ -24,6 +24,11 @@ final class SpinnerViewController: UIViewController {
 
         spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
     }
 }
 private let child = SpinnerViewController()

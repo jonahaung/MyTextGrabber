@@ -18,12 +18,11 @@ final class EditScanCornerView: UIView {
     private(set) var isHighlighted = false
     
     lazy private var circleLayer: CAShapeLayer = {
-        let layer = CAShapeLayer()
-        layer.fillColor = UIColor.systemBlue.cgColor
-        layer.strokeColor = UIColor.systemBlue.cgColor
-        layer.lineWidth = 1.0
-        return layer
-    }()
+        $0.fillColor = UIColor.white.cgColor
+        $0.strokeColor = UIColor.systemOrange.cgColor
+        $0.lineWidth = 3
+        return $0
+    }(CAShapeLayer())
     
     init(frame: CGRect, position: CornerPosition) {
         self.position = position
@@ -48,7 +47,6 @@ final class EditScanCornerView: UIView {
         let bezierPath = UIBezierPath(ovalIn: rect.insetBy(dx: circleLayer.lineWidth, dy: circleLayer.lineWidth))
         circleLayer.frame = rect
         circleLayer.path = bezierPath.cgPath
-        
         image?.draw(in: rect)
     }
     
