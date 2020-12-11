@@ -6,50 +6,58 @@
 //
 
 import UIKit
-import Vision
+import SwiftUI
 
-class ImageScannerResult: ObservableObject, Identifiable {
+class ImageScannerResult: ObservableObject {
 
-    @Published var originalImage: UIImage = UIImage() {
-        didSet {
-            if let buffer = originalImage.pixelBufferGray(width: originalImage.size.width.int, height: originalImage.size.height.int), let image = UIImage(pixelBuffer: buffer) {
-                grayScaledImage = image
-            }
-            
-            guard let ci = CIImage(image: originalImage) else { return }
-            let ciImage = ci.oriented(forExifOrientation: Int32(CGImagePropertyOrientation(originalImage.imageOrientation).rawValue))
-            if let image = ciImage.appalyingNoiseReduce()?.applyingAdaptiveThreshold()?.uiImage {
-                blackAndWhiteImage = image
-            }
-        }
-    }
-    @Published var editedImage: UIImage = UIImage() {
-        didSet {
-            CurrentSession.videoSize = editedImage.size
-        }
-    }
-    
-    @Published var isEditing = false
+    private var originalImage: UIImage = UIImage()
+    private var grayScaledImage: UIImage?
+    private var blackAndWhiteImage: UIImage?
+    @Published var editedImage: UIImage = UIImage()
+    @Published var text: String = ""
+    @Published var quadrilateral: Quadrilateral?
+    @Published var viewSate = ViewState.None
     
     var scannedImage: UIImage? {
         didSet {
-            let scaledSize = scannedImage?.size.scaleSize(for: UIScreen.main.bounds.height.rounded()) ?? .zero
+            guard let scannedImage = scannedImage else { return }
+            let scaledSize = scannedImage.size.scaleSize(for: 700)
+                guard scaledSize.width <= 700 || scaledSize.height <= 700 else {
+                    setImage(image: scannedImage)
+                    return
+                }
             guard
-                let scannedImage = scannedImage,
                 let _pixelBuffer = scannedImage.pixelBuffer(width: scaledSize.width.int, height: scaledSize.height.int),
                 let resizedImage = UIImage(pixelBuffer: _pixelBuffer) else {
-                isEditing = false
                 return
             }
             
-            originalImage = resizedImage
-            editedImage = resizedImage
-            isEditing = true
+            setImage(image: resizedImage)
+            CurrentSession.videoSize = resizedImage.size
         }
     }
+    init(text: String) {
+       
+        self.text = text
+    }
     
-    private var grayScaledImage: UIImage?
-    private var blackAndWhiteImage: UIImage?
+    init(){
+        
+    }
+    
+    
+    private func setImage(image: UIImage) {
+        originalImage = image
+        editedImage = image
+        if let buffer = originalImage.pixelBufferGray(width: originalImage.size.width.int, height: originalImage.size.height.int), let image = UIImage(pixelBuffer: buffer) {
+            grayScaledImage = image
+        }
+        guard let ci = CIImage(image: originalImage) else { return }
+        let ciImage = ci.oriented(forExifOrientation: Int32(CGImagePropertyOrientation(originalImage.imageOrientation).rawValue))
+        if let image = ciImage.appalyingNoiseReduce()?.applyingAdaptiveThreshold()?.uiImage {
+            blackAndWhiteImage = image
+        }
+    }
     
     func thumbnilImage(for filterMode: ImageFilterMode) -> UIImage {
         switch filterMode {
@@ -61,6 +69,4 @@ class ImageScannerResult: ObservableObject, Identifiable {
             return blackAndWhiteImage ?? editedImage
         }
     }
-
-
 }

@@ -40,6 +40,10 @@ final class CameraUIView: UIView {
         super.layoutSubviews()
         updateTransform()
     }
+    
+    deinit {
+        currentTextRects.removeAll()
+    }
 }
 
 extension CameraUIView {
@@ -59,18 +63,11 @@ extension CameraUIView {
         }
         
         currentTextRects.forEach{$0.remove()}
-        
-        textRects.forEach{
-            $0.addShapeLayer(to: shapeLayer)
-        }
-        let normalizedRect = textRects.map{$0.boundingBox}.reduce(CGRect.null, {$0.union($1)}).applying(CurrentSession.cameraTransform)
+    
+        let normalizedRect = textRects.map{$0.boundingBox}.reduce(CGRect.null, {$0.union($1)}).applying(CurrentSession.cameraTransform).scaleAndCenter(withRatio: 1.1)
+        shapeLayer.add(animation, forKey: "path")
         shapeLayer.path = CGMutablePath(rect: normalizedRect, transform: nil)
-        
-//        textRects.forEach {
-//            $0.addTextLayer(to: shapeLayer)
-//            $0.display()
-//        }
-        
+    
         self.currentTextRects = textRects
     }
     

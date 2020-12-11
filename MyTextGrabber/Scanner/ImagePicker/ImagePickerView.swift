@@ -6,19 +6,15 @@
 //
 
 import SwiftUI
-import UIKit
-import VisionKit
 
 struct ImagePickerView: UIViewControllerRepresentable {
     
-    @Binding var scannedImage: UIImage?
-    @Environment(\.presentationMode) var presentationMode
+    @Binding var result: ImageScannerResult
     
     typealias UIViewControllerType = UIImagePickerController
     
     func makeCoordinator() -> Coordinator {
-        
-        return Coordinator(scannedImage: $scannedImage, presentationMode: presentationMode)
+        return Coordinator(scannedImage: $result.scannedImage, viewState: $result.viewSate)
     }
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePickerView>) -> UIImagePickerController {
@@ -36,20 +32,24 @@ struct ImagePickerView: UIViewControllerRepresentable {
     class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         
         private var scannedImage: Binding<UIImage?>
-        var presentationMode: Binding<PresentationMode>
+        private var viewState: Binding<ViewState>
         
-        init(scannedImage: Binding<UIImage?>, presentationMode: Binding<PresentationMode>) {
-            self.presentationMode = presentationMode
+        init(scannedImage: Binding<UIImage?>, viewState: Binding<ViewState>) {
             self.scannedImage = scannedImage
+            self.viewState = viewState
         }
         
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-            presentationMode.wrappedValue.dismiss()
+            viewState.wrappedValue = .None
+            picker.dismiss(animated: true)
         }
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            scannedImage.wrappedValue = info[.originalImage] as? UIImage
-            presentationMode.wrappedValue.dismiss()
+            scannedImage.wrappedValue = (info[.originalImage] as? UIImage)?.withFixedOrientation()
+            
+            picker.dismiss(animated: true) {
+                self.viewState.wrappedValue = .ImageEditorView
+            }
         }
     }
 }

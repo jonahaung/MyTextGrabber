@@ -18,7 +18,6 @@ final class VideoService: NSObject {
     
     let captureSession = AVCaptureSession()
     private let dataOutputQueue = DispatchQueue(label: "VideoService", autoreleaseFrequency: .workItem)
-    private let sessionQueue = DispatchQueue(label: "CaptureSession", autoreleaseFrequency: .workItem)
     private let captureDevice = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInDualCamera, .builtInWideAngleCamera], mediaType: .video, position: .back).devices.first
     private let videoOutput: AVCaptureVideoDataOutput = {
         $0.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA]
@@ -32,11 +31,8 @@ final class VideoService: NSObject {
         setup()
     }
     deinit {
-        captureSession.stopRunning()
         print("Video Service")
     }
-    
-    
 }
 
 
@@ -144,18 +140,20 @@ extension VideoService: AVCapturePhotoCaptureDelegate {
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let imageData = photo.fileDataRepresentation() {
-            DispatchQueue.global(qos: .background).async { [weak self] in
-                guard let image = UIImage(data: imageData)?.applyingPortraitOrientation() else {
-                    return
-                }
-                
-                DispatchQueue.main.async {
-                    guard let self = self else { return }
-                    self.delegate?.videoService(self, didCapturePhoto: image)
-                    
-                }
-                
+            guard let image = UIImage(data: imageData)?.applyingPortraitOrientation() else {
+                return
             }
+            delegate?.videoService(self, didCapturePhoto: image)
+//            DispatchQueue.global(qos: .background).async { [weak self] in
+//                
+//                
+//                DispatchQueue.main.async {
+//                    guard let self = self else { return }
+//                    self.delegate?.videoService(self, didCapturePhoto: image)
+//                    
+//                }
+//                
+//            }
         }
     }
 }

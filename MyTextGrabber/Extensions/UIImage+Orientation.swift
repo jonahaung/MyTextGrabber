@@ -12,6 +12,7 @@ extension UIImage {
     
     /// Returns the same image with a portrait orientation.
     func applyingPortraitOrientation() -> UIImage {
+        
         switch imageOrientation {
         case .up:
             return rotated(by: Measurement(value: Double.pi, unit: .radians), options: []) ?? self
@@ -69,30 +70,29 @@ extension UIImage {
         return image
     }
     
-//    /// Rotates the image based on the information collected by the accelerometer
-//    func withFixedOrientation() -> UIImage {
-//        var imageAngle: Double = 0.0
-//        
-//        var shouldRotate = true
-//        switch CaptureSession.current.editImageOrientation {
-//        case .up:
-//            shouldRotate = false
-//        case .left:
-//            imageAngle = Double.pi / 2
-//        case .right:
-//            imageAngle = -(Double.pi / 2)
-//        case .down:
-//            imageAngle = Double.pi
-//        default:
-//            shouldRotate = false
-//        }
-//        
-//        if shouldRotate,
-//            let finalImage = rotated(by: Measurement(value: imageAngle, unit: .radians)) {
-//            return finalImage
-//        } else {
-//            return self
-//        }
-//    }
+    /// Rotates the image based on the information collected by the accelerometer
+    func withFixedOrientation() -> UIImage {
+        var imageAngle: Double = 0.0
+        var shouldRotate = true
+        switch CurrentSession.editImageOrientation {
+        case .up:
+            shouldRotate = false
+        case .left:
+            imageAngle = Double.pi / 2
+        case .right:
+            imageAngle = -(Double.pi / 2)
+        case .down:
+            imageAngle = Double.pi
+        default:
+            shouldRotate = false
+        }
+        
+        if shouldRotate,
+            let finalImage = rotated(by: Measurement(value: imageAngle, unit: .radians)) {
+            return finalImage
+        } else {
+            return self
+        }
+    }
     
 }

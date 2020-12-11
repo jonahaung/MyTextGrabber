@@ -53,8 +53,8 @@ class TextRect {
     }
     
     private lazy var shapeLayer: CAShapeLayer = {
-        $0.shadowColor = UIColor.systemBlue.cgColor
-        $0.shadowOpacity = 0.4
+        $0.shadowColor = UIColor.systemYellow.cgColor
+        $0.shadowOpacity = 0.3
         $0.shadowOffset = .zero
         $0.shadowRadius = 0
         $0.shouldRasterize = true
@@ -62,7 +62,7 @@ class TextRect {
         return $0
     }(CAShapeLayer())
     
-    private lazy var textLayer: CATextLayer = {
+    lazy var textLayer: CATextLayer = {
         $0.contentsScale = UIScreen.main.scale
         $0.isWrapped = true
         $0.shouldRasterize = true
@@ -76,7 +76,6 @@ class TextRect {
     }
     
     func addTextLayer(to _layer: CALayer) {
-        
         _layer.addSublayer(textLayer)
     }
     func remove() {
@@ -109,22 +108,32 @@ class TextRect {
         guard let text = self.recognizedText ?? self.text, let boundingBox = shapeLayer.shadowPath?.boundingBoxOfPath else { return }
         
         let colors = image?.getColors()
+        let isMyanmar = UserDefaultsManager.shared.languageMode != .English
+        let factor: CGFloat = isMyanmar ? 0.7 : 0.9
+        let fontSize = max(8, (boundingBox.height * factor))
+        let font = UIFont.myanmarFont.withSize(fontSize)
         
-        let textSize = text.boundingRect(with: CGSize(width: .greatestFiniteMagnitude, height: boundingBox.height), options: [.usesFontLeading], attributes: [.font: UIFont.preferredFont(forTextStyle: .body)], context: nil).size
-        let isMyanmar = userDefaults.isMyanmar
-        let fontSize = (textSize.height * (isMyanmar ? 0.5 : 0.9)).rounded()
-        let font = UIFont.systemFont(ofSize: fontSize)
-
+        let textFrame = text.boundingRect(with: CGSize(width: .greatestFiniteMagnitude, height: boundingBox.height), options: [.usesFontLeading], attributes: [.font: font], context: nil)
+        let textSize = textFrame.size
+        
         CATransaction.setDisableActions(true)
-        shapeLayer.isHidden = false
         shapeLayer.shadowOpacity = 1
+        shapeLayer.shadowColor = colors?.background.cgColor
+        shapeLayer.isHidden = false
         textLayer.font = font
         textLayer.fontSize = fontSize
-        textLayer.foregroundColor = colors?.detail.cgColor
-        shapeLayer.shadowColor = colors?.background.cgColor
-        textLayer.frame = CGRect(origin: boundingBox.origin, size: textSize)
-
+        textLayer.foregroundColor = UIColor.darkText.cgColor
+        
+        textLayer.frame = textFrame
         textLayer.string = text
+        if textSize.width > boundingBox.width {
+            let scaleX = boundingBox.size.width/textSize.width
+            let scaleY = boundingBox.size.height*factor/textSize.height
+            let scaleTransform = CGAffineTransform(scaleX: scaleX, y: scaleY)
+            textLayer.setAffineTransform(scaleTransform)
+        }
+        textLayer.frame.origin = boundingBox.origin
+        textLayer.setNeedsDisplay()
     }
     
     deinit {

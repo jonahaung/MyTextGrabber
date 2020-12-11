@@ -16,7 +16,22 @@ struct SavedItemsView: View {
     private var items: FetchedResults<Item>
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView(.vertical) {
+            LazyVGrid(columns: [GridItem(GridItem.Size.adaptive(minimum: 100, maximum: 180), spacing: 2, alignment: .center)]) {
+                ForEach(items) { item in
+                    VStack {
+                        Text(item.text ?? "")
+                            .lineLimit(20)
+                           
+                            .font(.system(size: 7))
+                            .lineSpacing(0)
+                            .padding(8)
+                    }
+                    .background(Rectangle().fill(Color.white).shadow(color: Color.black.opacity(0.2), radius: 2, x: 2, y: 2))
+                    .frame(width: 120)
+                }
+            }
+        }
     }
     
     private func deleteItems(offsets: IndexSet) {

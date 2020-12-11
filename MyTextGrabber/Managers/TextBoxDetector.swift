@@ -12,26 +12,33 @@ struct TextBoxDetector {
     
     static func detect(image: UIImage, completion: @escaping ([TextRect])->Void) {
         guard let buffer = image.pixelBuffer() else {
-            completion([])
+            DispatchQueue.main.async {
+                completion([])
+            }
+            
             return
         }
         
-        detect(cvBuffer: buffer, completion: completion)
-    }
-    
-    static func detect(cvBuffer: CVPixelBuffer, completion: @escaping ([TextRect])->Void) {
         let request = VNRecognizeTextRequest { (x, _) in
             guard let results = x.results as? [VNRecognizedTextObservation] else { return }
             let textRects = results.map{TextRect(observation: $0)}.compactMap{$0}
     
-    
-            completion(textRects)
+            DispatchQueue.main.async {
+                completion(textRects)
+            }
+            
         }
         request.recognitionLevel = .accurate
         request.usesLanguageCorrection = true
         
-        let handler = VNImageRequestHandler(cvPixelBuffer: cvBuffer, orientation: .up)
+        let handler = VNImageRequestHandler(cvPixelBuffer: buffer, orientation: .up)
+        DispatchQueue.global(qos: .userInitiated).async {
+            try? handler.perform([request])
+        }
         
-        try? handler.perform([request])
+    }
+    
+    static func detect(cvBuffer: CVPixelBuffer, completion: @escaping ([TextRect])->Void) {
+        
     }
 }

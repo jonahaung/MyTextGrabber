@@ -13,4 +13,6 @@ class CurrentSession {
     
     static var videoSize = CGSize.zero
     static var cameraTransform = CGAffineTransform.identity
+    static var currentQuadViewSize = CGSize.zero
+    static var editImageOrientation: UIImage.Orientation = .up
 }

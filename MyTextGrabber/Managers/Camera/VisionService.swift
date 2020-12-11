@@ -18,13 +18,9 @@ class VisionService: NSObject {
     weak var delegate: VisionServiceDelegate?
     private var lastTimestamp = CMTime()
     private var fps = 10
-    private var textRequest: VNRecognizeTextRequest!
     
-    override init() {
-        super.init()
-        textRequest = VNRecognizeTextRequest(completionHandler: textCompletionHandler(request:error:))
-        textRequest.recognitionLevel = .accurate
-        textRequest.usesLanguageCorrection = true
+    deinit {
+        print("VisionService")
     }
     
 }
@@ -43,22 +39,26 @@ extension VisionService: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let buffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
         
-        if CurrentSession.videoSize == .zero {
-            CurrentSession.videoSize = CGSize(width: CVPixelBufferGetWidth(buffer), height: CVPixelBufferGetHeight(buffer))
-        }
+        
         let timestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
         let deltaTime = timestamp - lastTimestamp
         let canPerformRequest = deltaTime >= CMTimeMake(value: 1, timescale: Int32(fps))
         
         if canPerformRequest {
+            CurrentSession.videoSize = CGSize(width: CVPixelBufferGetWidth(buffer), height: CVPixelBufferGetHeight(buffer))
             self.lastTimestamp = timestamp
             detectText(buffer)
         }
     }
     
     func detectText(_ pixelBuffer: CVImageBuffer) {
+        
+        let textRequest = VNRecognizeTextRequest(completionHandler: textCompletionHandler(request:error:))
+        textRequest.recognitionLevel = .accurate
+        textRequest.usesLanguageCorrection = true
+        
         let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer, orientation: .up)
-
+        
         try? handler.perform([textRequest])
     }
     

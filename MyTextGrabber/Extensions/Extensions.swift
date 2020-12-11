@@ -157,12 +157,12 @@ extension CGFloat {
 }
 extension CGRect {
     
-    func viewRect(for size: CGSize) -> CGRect {
-        return VNImageRectForNormalizedRect(self, size.width.int, size.height.int).integral
+    func imageRect(for imagSize: CGSize) -> CGRect {
+        return VNImageRectForNormalizedRect(self, size.width.int, size.height.int)
     }
     
     func vnRect(for parentSize: CGSize) -> CGRect {
-        return  VNNormalizedRectForImageRect(self, parentSize.width.int, parentSize.height.int).integral
+        return  VNNormalizedRectForImageRect(self, parentSize.width.int, parentSize.height.int)
     }
     
     func normalized() ->CGRect {

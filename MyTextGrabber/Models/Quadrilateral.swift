@@ -7,61 +7,38 @@
 //
 
 import UIKit
-import AVFoundation
 import Vision
-import CoreGraphics
+//import CoreGraphics
 
-/// A data structure representing a quadrilateral and its position. This class exists to bypass the fact that CIRectangleFeature is read-only.
-public struct Quadrilateral: Transformable {
+struct Quadrilateral: Transformable {
     
-    /// A point that specifies the top left corner of the quadrilateral.
-    public var topLeft: CGPoint
+    var topLeft: CGPoint
+    var topRight: CGPoint
+    var bottomRight: CGPoint
+    var bottomLeft: CGPoint
     
-    /// A point that specifies the top right corner of the quadrilateral.
-    public var topRight: CGPoint
-    
-    /// A point that specifies the bottom right corner of the quadrilateral.
-    public var bottomRight: CGPoint
-    
-    /// A point that specifies the bottom left corner of the quadrilateral.
-    public var bottomLeft: CGPoint
-    
-    init(rectangleFeature: CIRectangleFeature) {
-        self.topLeft = rectangleFeature.topLeft
-        self.topRight = rectangleFeature.topRight
-        self.bottomLeft = rectangleFeature.bottomLeft
-        self.bottomRight = rectangleFeature.bottomRight
-    }
+    var boundingBox: CGRect = .zero
     
     init(rect: CGRect) {
         topLeft = CGPoint(x: rect.minX, y: rect.minY)
         topRight = CGPoint(x: rect.maxX, y: rect.minY)
         bottomLeft = CGPoint(x: rect.minX, y: rect.maxY)
         bottomRight = CGPoint(x: rect.maxX, y: rect.maxY)
-        boundingBox = rect
+        boundingBox = rect.normalized()
     }
-    var boundingBox: CGRect = .zero
-
-    @available(iOS 11.0, *)
-    init(rectangleObservation: VNRectangleObservation) {
-        self.topLeft = rectangleObservation.topLeft
-        self.topRight = rectangleObservation.topRight
-        self.bottomLeft = rectangleObservation.bottomLeft
-        self.bottomRight = rectangleObservation.bottomRight
-    }
-
+    
     init(topLeft: CGPoint, topRight: CGPoint, bottomRight: CGPoint, bottomLeft: CGPoint) {
         self.topLeft = topLeft
         self.topRight = topRight
         self.bottomRight = bottomRight
         self.bottomLeft = bottomLeft
+        boundingBox = CGRect(x: topLeft.x, y: topLeft.y, width: topRight.x-topLeft.x, height: topRight.y-bottomRight.y)
     }
     
-    public var description: String {
+    var description: String {
         return "topLeft: \(topLeft), topRight: \(topRight), bottomRight: \(bottomRight), bottomLeft: \(bottomLeft)"
     }
     
-    /// The path of the Quadrilateral as a `UIBezierPath`
     var path: UIBezierPath {
         let path = UIBezierPath()
         path.move(to: topLeft)
@@ -69,56 +46,16 @@ public struct Quadrilateral: Transformable {
         path.addLine(to: bottomRight)
         path.addLine(to: bottomLeft)
         path.close()
-        
         return path
     }
     
-    /// The perimeter of the Quadrilateral
     var perimeter: Double {
         let perimeter = topLeft.distanceTo(point: topRight) + topRight.distanceTo(point: bottomRight) + bottomRight.distanceTo(point: bottomLeft) + bottomLeft.distanceTo(point: topLeft)
         return Double(perimeter)
     }
     
-    /// Applies a `CGAffineTransform` to the quadrilateral.
-    ///
-    /// - Parameters:
-    ///   - t: the transform to apply.
-    /// - Returns: The transformed quadrilateral.
     func applying(_ transform: CGAffineTransform) -> Quadrilateral {
-        let quadrilateral = Quadrilateral(topLeft: topLeft.applying(transform), topRight: topRight.applying(transform), bottomRight: bottomRight.applying(transform), bottomLeft: bottomLeft.applying(transform))
-        
-        return quadrilateral
-    }
-    
-    /// Checks whether the quadrilateral is withing a given distance of another quadrilateral.
-    ///
-    /// - Parameters:
-    ///   - distance: The distance (threshold) to use for the condition to be met.
-    ///   - rectangleFeature: The other rectangle to compare this instance with.
-    /// - Returns: True if the given rectangle is within the given distance of this rectangle instance.
-    func isWithin(_ distance: CGFloat, ofRectangleFeature rectangleFeature: Quadrilateral) -> Bool {
-        
-        let topLeftRect = topLeft.surroundingSquare(withSize: distance)
-        if !topLeftRect.contains(rectangleFeature.topLeft) {
-            return false
-        }
-        
-        let topRightRect = topRight.surroundingSquare(withSize: distance)
-        if !topRightRect.contains(rectangleFeature.topRight) {
-            return false
-        }
-        
-        let bottomRightRect = bottomRight.surroundingSquare(withSize: distance)
-        if !bottomRightRect.contains(rectangleFeature.bottomRight) {
-            return false
-        }
-        
-        let bottomLeftRect = bottomLeft.surroundingSquare(withSize: distance)
-        if !bottomLeftRect.contains(rectangleFeature.bottomLeft) {
-            return false
-        }
-        
-        return true
+        return Quadrilateral(topLeft: topLeft.applying(transform), topRight: topRight.applying(transform), bottomRight: bottomRight.applying(transform), bottomLeft: bottomLeft.applying(transform))
     }
     
     /// Reorganizes the current quadrilateal, making sure that the points are at their appropriate positions. For example, it ensures that the top left point is actually the top and left point point of the quadrilateral.
@@ -129,7 +66,6 @@ public struct Quadrilateral: Transformable {
         guard ySortedPoints.count == 4 else {
             return
         }
-        
         let topMostPoints = Array(ySortedPoints[0..<2])
         let bottomMostPoints = Array(ySortedPoints[2..<4])
         let xSortedTopMostPoints = sortPointsByXValue(topMostPoints)
@@ -220,10 +156,11 @@ extension Quadrilateral {
         
         return Quadrilateral(topLeft: topLeft, topRight: topRight, bottomRight: bottomRight, bottomLeft: bottomLeft)
     }
+    
 }
 
 extension Quadrilateral: Equatable {
-    public static func == (lhs: Quadrilateral, rhs: Quadrilateral) -> Bool {
+    static func == (lhs: Quadrilateral, rhs: Quadrilateral) -> Bool {
         return lhs.topLeft == rhs.topLeft && lhs.topRight == rhs.topRight && lhs.bottomRight == rhs.bottomRight && lhs.bottomLeft == rhs.bottomLeft
     }
 }

@@ -7,21 +7,24 @@
 
 import Foundation
 
-let userDefaults = UserDefaultsManager()
 
-final class UserDefaultsManager {
+
+final class UserDefaultsManager: ObservableObject {
+    
+    static let shared = UserDefaultsManager()
     
     private let defaults = UserDefaults.standard
     
-    private let _isMyanmar = "isMyanmar"
-
    
-    var isMyanmar: Bool {
+    let _languageMode = "languageMode"
+
+    var languageMode: LanguageMode {
         get {
-            return defaults.bool(forKey: _isMyanmar)
+            return LanguageMode(rawValue: defaults.integer(forKey: _languageMode)) ?? .Myanmar
         }
         set {
-            updateObject(for: _isMyanmar, with: newValue)
+            updateObject(for: _languageMode, with: newValue.rawValue)
+            objectWillChange.send()
         }
     }
 }

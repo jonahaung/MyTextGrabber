@@ -9,13 +9,14 @@ import SwiftUI
 
 @main
 struct MyTextGrabberApp: App {
+    
     let persistenceController = PersistenceController.shared
-
+    let userDefaults = UserDefaultsManager()
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
-            
+                .environmentObject(userDefaults)
         }
     }
 }

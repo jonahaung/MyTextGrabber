@@ -37,6 +37,9 @@ final class Cameramanager: ObservableObject {
     func capture() {
         videoService.capturePhoto()
     }
+    deinit {
+        print("CameraManager")
+    }
 }
 
 extension Cameramanager: VideoServiceDelegate {
@@ -48,19 +51,26 @@ extension Cameramanager: VideoServiceDelegate {
     
     private func cropToTexts(image: UIImage) {
         guard !currentTextRects.isEmpty else { return }
-        let boundingBox = currentTextRects.map{$0.boundingBox}.reduce(CGRect.null, {$0.union($1)})
-        let imageRect = VNImageRectForNormalizedRect(boundingBox.normalized(), image.size.width.int, image.size.height.int)
-        guard
-            let pixelBuffer = image.pixelBuffer(),
-            let cgImage = CGImage.create(pixelBuffer: pixelBuffer),
-            let cropped = cgImage.cropping(to: imageRect)
-        else {
-            print("no pixel buffer")
-            return
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let self = self else { return }
+            let boundingBox = self.currentTextRects.map{$0.boundingBox}.reduce(CGRect.null, {$0.union($1)})
+            let imageRect = VNImageRectForNormalizedRect(boundingBox.normalized(), image.size.width.int, image.size.height.int).scaleAndCenter(withRatio: 1.1)
+            guard
+                let pixelBuffer = image.pixelBuffer(),
+                let cgImage = CGImage.create(pixelBuffer: pixelBuffer),
+                let cropped = cgImage.cropping(to: imageRect)
+            else {
+                print("no pixel buffer")
+                return
+            }
+            
+            let uiImage = UIImage(cgImage: cropped, scale: UIScreen.main.scale, orientation: .up)
+            DispatchQueue.main.async {
+                self.delegate?.cameraManage(self, didCaptureImage: uiImage)
+            }
+            
         }
         
-        let uiImage = UIImage(cgImage: cropped, scale: 1, orientation: .up)
-        delegate?.cameraManage(self, didCaptureImage: uiImage)
     }
 }
 

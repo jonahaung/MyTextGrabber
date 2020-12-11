@@ -27,29 +27,26 @@ final class QuadrilateralView: UIView {
         $0.strokeColor = UIColor.systemOrange.cgColor
         $0.fillColor = UIColor.clear.cgColor
         $0.lineWidth = 2
-//        $0.opacity = 1.0
+        $0.opacity = 1.0
         $0.isHidden = true
-        $0.fillRule = .evenOdd
         return $0
     }(CAShapeLayer())
     
     private let quadView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.clear
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UIView())
     
-    /// The quadrilateral drawn on the view.
     private(set) var quad: Quadrilateral?
+    
     public var editable = false {
         didSet {
             cornerViews(hidden: !editable)
-            quadLayer.fillColor = editable ? UIColor(white: 0, alpha: 0.4).cgColor : UIColor(white: 1.0, alpha: 0.5).cgColor
+//            quadLayer.fillColor = editable ? UIColor(white: 0, alpha: 0.4).cgColor : UIColor(white: 1.0, alpha: 0.5).cgColor
             guard let quad = quad else {
                 return
             }
-            drawQuad(quad, animated: false)
+            draw(quad, animated: false)
             layoutCornerViews(forQuad: quad)
         }
     }
@@ -59,7 +56,7 @@ final class QuadrilateralView: UIView {
             guard oldValue != isHighlighted else {
                 return
             }
-            quadLayer.fillColor = isHighlighted ? UIColor(white: 0, alpha: 0.4).cgColor : UIColor.clear.cgColor
+//            quadLayer.fillColor = isHighlighted ? UIColor(white: 0, alpha: 0.4).cgColor : UIColor.clear.cgColor
             isHighlighted ? bringSubviewToFront(quadView) : sendSubviewToBack(quadView)
         }
     }
@@ -80,7 +77,7 @@ final class QuadrilateralView: UIView {
         return EditScanCornerView(frame: CGRect(origin: .zero, size: cornerViewSize), position: .bottomLeft)
     }()
     
-    private let highlightedCornerViewSize = CGSize(width: 75.0, height: 75.0)
+    private let highlightedCornerViewSize = CGSize(width: 100, height: 100)
     private let cornerViewSize = CGSize(width: 20.0, height: 20.0)
     
     // MARK: - Life Cycle
@@ -126,42 +123,40 @@ final class QuadrilateralView: UIView {
         }
         
         quadLayer.frame = bounds
-        if let quad = quad {
-            drawQuadrilateral(quad: quad, animated: false)
-        }
     }
     
-    func drawQuadrilateral(quad: Quadrilateral?, animated: Bool) {
+    func drawQuadrilateral(quad: Quadrilateral?) {
         self.quad = quad
         guard let quad = quad else {
             quadLayer.path = nil
-            
+            cornerViews(hidden: true)
             return
         }
         
-        drawQuad(quad, animated: animated)
+        draw(quad, animated: !isHighlighted)
         if editable {
             cornerViews(hidden: false)
             layoutCornerViews(forQuad: quad)
         }
     }
     
-    private func drawQuad(_ quad: Quadrilateral, animated: Bool) {
-        var path = quad.path
-        path.usesEvenOddFillRule = true
-        if editable {
-            path = path.reversing()
-            let rectPath = UIBezierPath(rect: bounds)
-            rectPath.usesEvenOddFillRule = true
-            path.append(rectPath)
-        }
+    private func draw(_ quad: Quadrilateral, animated: Bool) {
+        let path = quad.path
+        quadLayer.path = path.cgPath
+        quadLayer.isHidden = false
+//        if editable {
+//            path = path.reversing()
+//            let rectPath = UIBezierPath(rect: bounds)
+//            rectPath.usesEvenOddFillRule = true
+//            path.append(rectPath)
+//        }
+        
         if animated == true {
             let pathAnimation = CABasicAnimation(keyPath: "path")
             pathAnimation.duration = 0.2
             quadLayer.add(pathAnimation, forKey: "path")
         }
-        quadLayer.path = path.cgPath
-        quadLayer.isHidden = false
+        
     }
     
     private func layoutCornerViews(forQuad quad: Quadrilateral) {
@@ -169,11 +164,6 @@ final class QuadrilateralView: UIView {
         topRightCornerView.center = quad.topRight
         bottomLeftCornerView.center = quad.bottomLeft
         bottomRightCornerView.center = quad.bottomRight
-    }
-    
-    func removeQuadrilateral() {
-        quadLayer.path = nil
-        quadLayer.isHidden = true
     }
     
     // MARK: - Actions
@@ -188,8 +178,8 @@ final class QuadrilateralView: UIView {
         cornerView.center = validPoint
         let updatedQuad = update(quad, withPosition: validPoint, forCorner: cornerView.position)
         
-        self.quad = updatedQuad
-        drawQuad(updatedQuad, animated: false)
+//        self.quad = updatedQuad
+//        drawQuad(updatedQuad, animated: false)
         delegate?.quadrilateralView(self, quadrilateralDidUpdate: updatedQuad)
     }
     
@@ -204,7 +194,7 @@ final class QuadrilateralView: UIView {
             cornerView.highlightWithImage(image)
             return
         }
-
+        
         let origin = CGPoint(x: cornerView.frame.origin.x - (highlightedCornerViewSize.width - cornerViewSize.width) / 2.0,
                              y: cornerView.frame.origin.y - (highlightedCornerViewSize.height - cornerViewSize.height) / 2.0)
         cornerView.frame = CGRect(origin: origin, size: highlightedCornerViewSize)
